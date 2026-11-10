@@ -16,6 +16,12 @@ build/
 .poc-writer-state/
 .poc-audit-state/
 
+# Local agent/tool state (never committed).
+.eden/
+.hg/
+.muse/
+.sl/
+
 # Editor and OS noise.
 .DS_Store
 Thumbs.db
