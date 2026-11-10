@@ -9,7 +9,7 @@ import (
 
 	"github.com/jackc/pgx/v5/pgconn"
 
-	"github.com/PithomLabs/a1/internal/apperr"
+	"github.com/PithomLabs/a2/internal/apperr"
 )
 
 // DBTX is the write surface shared by *pgxpool.Pool and pgx.Tx.

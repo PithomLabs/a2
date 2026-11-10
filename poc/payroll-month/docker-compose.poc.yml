@@ -1,0 +1,82 @@
+# POC stack: PostgreSQL 18.6 + immudb (disposable databases only).
+# Usage: docker compose -f poc/payroll-month/docker-compose.poc.yml up -d
+# Requires a working docker daemon (absent in the research sandbox) and the
+# env vars below. DBOS needs no service: it is a Go library plus system
+# tables created by `poc-run migrate`.
+name: a2-poc
+
+services:
+  postgres:
+    # Digest VERIFIED 2026-11-10 via Hub API (linux/amd64 tag 18.6-alpine).
+    image: postgres:18.6-alpine@sha256:300ebd02c6d4de9ee27ad7f6855d5d21b4d3a4a5117767c1197d284c635d9736
+    container_name: a2-poc-postgres
+    restart: "no"
+    environment:
+      POSTGRES_DB: ${POC_POSTGRES_DB:-poc}
+      POSTGRES_USER: ${POC_POSTGRES_USER:-poc}
+      POSTGRES_PASSWORD: ${POC_POSTGRES_PASSWORD:?set POC_POSTGRES_PASSWORD (see POC-RUNBOOK.md)}
+      A1_DEV_ROLE_PASSWORD: ${POC_ROLE_PASSWORD:?set POC_ROLE_PASSWORD (see POC-RUNBOOK.md)}
+      POC_AUDIT_PG_PASSWORD: ${POC_AUDIT_PG_PASSWORD:?set POC_AUDIT_PG_PASSWORD (see POC-RUNBOOK.md)}
+    ports:
+      - "${POC_POSTGRES_PORT:-5544}:5432"
+    volumes:
+      # PG18 layout: mount the parent, NOT .../data (see RESEARCH.md 2.4).
+      - a2-poc-pgdata:/var/lib/postgresql
+      - ../../scripts/db/init-roles.sh:/docker-entrypoint-initdb.d/10-roles.sh:ro
+      - ./gate/init-auditor-role.sh:/docker-entrypoint-initdb.d/20-auditor.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POC_POSTGRES_USER:-poc}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  immudb:
+    # Tag + digest VERIFIED 2026-11-10 via Hub API (linux/amd64 tag 1.11.2;
+    # v-prefixed tag 404s). BSL-1.1: POC (non-production) use is inside the
+    # use grant; production needs the R1 ruling first. See DECISION-REQUESTS.md.
+    image: codenotary/immudb:1.11.2@sha256:3033c1b51590ee01df4a9be682504490d783ef7f157240d1d0abf7c6e17f313f
+    container_name: a2-poc-immudb
+    restart: "no"
+    environment:
+      # Admin password for the immudb superuser (first boot only; changing
+      # it later requires wiping a2-poc-immudata). Gate B finding: without
+      # this the server keeps the well-known default 'immudb'. Runtime
+      # identities (poc_writer/poc_auditor) are provisioned separately via
+      # `poc-run immudb-users` — never the superuser (§5.3).
+      IMMUDB_ADMIN_PASSWORD: ${POC_IMMUDB_ADMIN_PASSWORD:?set POC_IMMUDB_ADMIN_PASSWORD (see POC-RUNBOOK.md)}
+    ports:
+      - "${POC_IMMUDB_PORT:-3322}:3322" # gRPC (native Go SDK; wire protocol unused)
+    volumes:
+      - a2-poc-immudata:/var/lib/immudb # TODO: verify data-dir path on 1.11
+    healthcheck:
+      test: ["CMD", "immuadmin", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  auditor:
+    # External verifier (R2 model): own container, own volume, own creds
+    # (§5.3: read-only poc_auditor user, read-only PG auditor role).
+    # The writer NEVER mounts a2-poc-auditstate. UNEXECUTED (no daemon here).
+    # Run on demand: docker compose -f ... --profile audit run auditor ...
+    build:
+      context: ../..
+      dockerfile: poc/payroll-month/auditor.Dockerfile
+    profiles: ["audit"]
+    depends_on:
+      immudb:
+        condition: service_healthy
+    environment:
+      POC_IMMUDB_ADDR: immudb:3322
+      POC_AUDIT_IMMUDB_USER: ${POC_AUDIT_IMMUDB_USER:-poc_auditor}
+      POC_AUDIT_IMMUDB_PASSWORD: ${POC_AUDIT_IMMUDB_PASSWORD:?set POC_AUDIT_IMMUDB_PASSWORD}
+      POC_IMMUDB_DB: ${POC_IMMUDB_DB:-defaultdb}
+      POC_AUDIT_DATABASE_URL: postgres://auditor:${POC_AUDIT_PG_PASSWORD:?set POC_AUDIT_PG_PASSWORD}@postgres:5432/${POC_POSTGRES_DB:-poc}?sslmode=disable
+      POC_AUDIT_STATE_DIR: /var/lib/auditor
+    volumes:
+      - a2-poc-auditstate:/var/lib/auditor
+
+volumes:
+  a2-poc-pgdata:
+  a2-poc-immudata:
+  a2-poc-auditstate:

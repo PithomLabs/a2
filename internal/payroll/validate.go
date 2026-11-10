@@ -12,9 +12,9 @@ import (
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	coredatabase "github.com/PithomLabs/a1/core/database"
-	"github.com/PithomLabs/a1/internal/apperr"
-	"github.com/PithomLabs/a1/internal/audit"
+	coredatabase "github.com/PithomLabs/a2/core/database"
+	"github.com/PithomLabs/a2/internal/apperr"
+	"github.com/PithomLabs/a2/internal/audit"
 )
 
 // Validation is the verdict of one ValidateRun call. Valid means the

@@ -5,8 +5,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	coreapi "github.com/PithomLabs/a1/core/api"
-	"github.com/PithomLabs/a1/internal/httpapi"
+	coreapi "github.com/PithomLabs/a2/core/api"
+	"github.com/PithomLabs/a2/internal/httpapi"
 )
 
 func serveCmd() *cobra.Command {

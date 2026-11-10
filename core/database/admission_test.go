@@ -14,8 +14,8 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	coremigrations "github.com/PithomLabs/a1/migrations/core"
-	"github.com/PithomLabs/a1/tests/dbutil"
+	coremigrations "github.com/PithomLabs/a2/migrations/core"
+	"github.com/PithomLabs/a2/tests/dbutil"
 )
 
 // admissionExpSQL is the Gate 1 candidate mechanism: session-barrier
@@ -296,10 +296,12 @@ func migrateUp(t *testing.T, dsn string) {
 // to head plus the experimental admission SQL, idempotent).
 func admissionSetup(t *testing.T) dbutil.TestDB {
 	t.Helper()
+	// Hoisted above Once: t.Skip inside Do would poison the cache (Goexit
+	// marks Once done, leaving a zero TestDB for every later test).
+	dsn := dbutil.DSN(t)
 	admissionOnce.Do(func() {
 		ctx, cancel := testCtx()
 		defer cancel()
-		dsn := dbutil.DSN(t)
 		base := dbName(t, dsn)
 		var err error
 		admissionDB, err = dbutil.SetupDB(ctx, dsn, base+"_admission",
@@ -331,10 +333,12 @@ func admissionSetup(t *testing.T) dbutil.TestDB {
 // experiment suffix, never the shared base name.
 func revokeSetup(t *testing.T) dbutil.TestDB {
 	t.Helper()
+	// Hoisted above Once: t.Skip inside Do would poison the cache (Goexit
+	// marks Once done, leaving a zero TestDB for every later test).
+	dsn := dbutil.DSN(t)
 	revokeOnce.Do(func() {
 		ctx, cancel := testCtx()
 		defer cancel()
-		dsn := dbutil.DSN(t)
 		name := dbName(t, dsn) + "_admrevoke"
 		assertDisposableDrop(dsn, name)
 		maint, err := pgx.Connect(ctx, dsn)

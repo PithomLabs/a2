@@ -1,0 +1,80 @@
+# POC CI (UNEXECUTED: workflow syntax validated only, never run on Actions).
+# Requires a DB: the suite job fails loudly without WORKFORCEOPS_TEST_DATABASE_URL.
+name: poc
+
+on:
+  push:
+    paths:
+      - "poc/**"
+      - "docs/stack/**"
+      - ".github/workflows/poc.yml"
+  pull_request:
+    paths:
+      - "poc/**"
+      - "docs/stack/**"
+
+jobs:
+  poc-module:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: poc/payroll-month
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.27"
+      - run: go build ./...
+      - run: go test -count=1 ./synth/
+      - run: go vet ./... && test -z "$(gofmt -l .)"
+      - run: go run ./cmd/poc-run --demo-synth-only
+
+  poc-stack:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18.6-alpine@sha256:300ebd02c6d4de9ee27ad7f6855d5d21b4d3a4a5117767c1197d284c635d9736
+        env:
+          POSTGRES_DB: poc
+          POSTGRES_USER: poc
+          POSTGRES_PASSWORD: ${{ secrets.POC_POSTGRES_PASSWORD }}
+          A1_DEV_ROLE_PASSWORD: ${{ secrets.POC_ROLE_PASSWORD }}
+        ports: ["5544:5432"]
+        options: >-
+          --health-cmd "pg_isready -U poc"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+          -v a2-poc-pgdata:/var/lib/postgresql
+      immudb:
+        image: codenotary/immudb:1.11.2@sha256:3033c1b51590ee01df4a9be682504490d783ef7f157240d1d0abf7c6e17f313f
+        ports: ["3322:3322"]
+        options: >-
+          --health-cmd "immuadmin status"
+          --health-interval 10s --health-timeout 5s --health-retries 12
+    env:
+      POC_DATABASE_URL: postgres://app:${{ secrets.POC_ROLE_PASSWORD }}@localhost:5544/poc?sslmode=disable
+      POC_DBOS_MIGRATE_URL: postgres://migration_admin:${{ secrets.POC_ROLE_PASSWORD }}@localhost:5544/poc?sslmode=disable
+      POC_IMMUDB_ADDR: localhost:3322
+      WORKFORCEOPS_TEST_DATABASE_URL: postgres://migration_admin:${{ secrets.POC_ROLE_PASSWORD }}@localhost:5544/poc_test?sslmode=disable
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.27"
+      - name: Migrate up (00001-00012, unmodified)
+        run: MIGRATION_DATABASE_URL="$POC_DBOS_MIGRATE_URL" go run ./cmd/workforceops migrate up
+      - name: DBOS system tables
+        run: go run ./cmd/poc-run migrate
+        working-directory: poc/payroll-month
+      - name: Full month
+        run: go run ./cmd/poc-run | tee poc-report.json; test "${PIPESTATUS[0]}" -eq 0
+        working-directory: poc/payroll-month
+      - name: Experiment harnesses
+        run: go test -count=1 ./...
+        working-directory: poc/payroll-month
+      - name: a2 suite on PG18 (E5)
+        run: go test -count=1 ./...
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: poc-report
+          path: poc/payroll-month/poc-report.json

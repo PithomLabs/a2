@@ -9,7 +9,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 
-	"github.com/PithomLabs/a1/internal/apperr"
+	"github.com/PithomLabs/a2/internal/apperr"
 )
 
 func testCtx(method, target string) (echo.Context, *httptest.ResponseRecorder) {

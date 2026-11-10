@@ -1,7 +1,3 @@
-# Reference and planning inputs — never part of the a1 repository.
-bchat/
-plans/
-
 # Build output.
 build/
 
@@ -9,6 +5,8 @@ build/
 .env
 .env.*.local
 *.log
+
+.github
 
 # Go caches if ever pointed at the workspace.
 .gocache/

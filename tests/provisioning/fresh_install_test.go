@@ -8,10 +8,10 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	coredatabase "github.com/PithomLabs/a1/core/database"
-	"github.com/PithomLabs/a1/internal/employer"
-	coremigrations "github.com/PithomLabs/a1/migrations/core"
-	"github.com/PithomLabs/a1/tests/dbutil"
+	coredatabase "github.com/PithomLabs/a2/core/database"
+	"github.com/PithomLabs/a2/internal/employer"
+	coremigrations "github.com/PithomLabs/a2/migrations/core"
+	"github.com/PithomLabs/a2/tests/dbutil"
 )
 
 // Section 9C: the documented fresh-install path end to end on a

@@ -6,8 +6,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/PithomLabs/a1/core/database"
-	"github.com/PithomLabs/a1/tests/dbutil"
+	"github.com/PithomLabs/a2/core/database"
+	"github.com/PithomLabs/a2/tests/dbutil"
 )
 
 func TestHealthz(t *testing.T) {

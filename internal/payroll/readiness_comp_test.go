@@ -7,8 +7,8 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/PithomLabs/a1/internal/hr"
-	"github.com/PithomLabs/a1/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/hr"
+	"github.com/PithomLabs/a2/internal/timesheet"
 )
 
 // mkCompFixture builds a complete employee with January terms and a

@@ -1,4 +1,4 @@
-module github.com/PithomLabs/a1
+module github.com/PithomLabs/a2
 
 go 1.27.3
 

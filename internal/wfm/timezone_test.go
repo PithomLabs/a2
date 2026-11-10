@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/PithomLabs/a1/internal/apperr"
+	"github.com/PithomLabs/a2/internal/apperr"
 )
 
 // H4 (C-TZ-05): programme timezones are operational configuration,

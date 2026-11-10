@@ -8,15 +8,15 @@ import (
 	"fmt"
 	"strings"
 
-	coredatabase "github.com/PithomLabs/a1/core/database"
-	coremigrations "github.com/PithomLabs/a1/migrations/core"
+	coredatabase "github.com/PithomLabs/a2/core/database"
+	coremigrations "github.com/PithomLabs/a2/migrations/core"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/PithomLabs/a1/internal/apperr"
-	"github.com/PithomLabs/a1/internal/attendance"
-	"github.com/PithomLabs/a1/internal/hr"
-	"github.com/PithomLabs/a1/internal/timesheet"
-	"github.com/PithomLabs/a1/internal/wfm"
+	"github.com/PithomLabs/a2/internal/apperr"
+	"github.com/PithomLabs/a2/internal/attendance"
+	"github.com/PithomLabs/a2/internal/hr"
+	"github.com/PithomLabs/a2/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/wfm"
 )
 
 const (

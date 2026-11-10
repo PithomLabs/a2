@@ -1,0 +1,20 @@
+{
+  "_note": "Committed genesis anchor for the POC immudb stack (prompt8 §5.3). Retained OUTSIDE the writer's mutable control: this file lives in git, the writer cannot change it at runtime. If the stack volume is wiped and recreated (new server UUID), audits pinned to this anchor fail loudly until a new ceremony commits a new anchor.",
+  "server_uuid": "dbpeo9bns5bc73erm8f0",
+  "anchor_tx": 1,
+  "tx_hash": "cf000ba4028d5a7596595b35117ab01ef1617f3744992d3f098d66a6c46f63cc",
+  "ceremony": {
+    "date": "2026-11-10",
+    "operator": "p8-remediation-agent",
+    "command": "go run ./cmd/auditor --state-dir <fresh> --accept-genesis --employer POC-AUTH-01 --run <validated-run>",
+    "anchor_output": "auditor: GENESIS accepted — commit this anchor out-of-band (git, signed)",
+    "determinism": "two independent fresh-dir ceremonies produced byte-identical anchors",
+    "stack": "a2-poc-immudb (codenotary/immudb:1.11.2), volume a2-poc-immudata, db defaultdb"
+  },
+  "semantics": {
+    "server_uuid": "immudb server instance identity (stable for the volume's life)",
+    "anchor_tx": "history root tx (always 1: first write to the database)",
+    "tx_hash": "sha256 over deterministic protobuf bytes of VerifiedTxByID(anchor_tx): pins the history root content. A state-dir hash CANNOT pin this (every verified read advances trusted state to the tip, so it stales on each append — proven live during remediation).",
+    "check": "auditor --expect-uuid/--expect-tx/--expect-tx-hash verifies from a fresh temp dir BEFORE any trust decision; mismatch exits 2"
+  }
+}

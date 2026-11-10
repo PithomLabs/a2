@@ -8,7 +8,7 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/PithomLabs/a1/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/timesheet"
 )
 
 func lastAudit(t *testing.T, pool *pgxpool.Pool, emp, action string) (actor, service, entity, entityID, before, after string) {

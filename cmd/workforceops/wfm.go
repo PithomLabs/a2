@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/PithomLabs/a1/internal/wfm"
+	"github.com/PithomLabs/a2/internal/wfm"
 )
 
 func clientCmd() *cobra.Command {

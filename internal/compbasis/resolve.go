@@ -9,7 +9,7 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/PithomLabs/a1/internal/apperr"
+	"github.com/PithomLabs/a2/internal/apperr"
 )
 
 // P3: one deterministic effective compensation basis per

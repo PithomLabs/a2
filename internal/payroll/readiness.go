@@ -9,10 +9,10 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/PithomLabs/a1/internal/apperr"
-	"github.com/PithomLabs/a1/internal/compbasis"
-	"github.com/PithomLabs/a1/internal/employer"
-	"github.com/PithomLabs/a1/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/apperr"
+	"github.com/PithomLabs/a2/internal/compbasis"
+	"github.com/PithomLabs/a2/internal/employer"
+	"github.com/PithomLabs/a2/internal/timesheet"
 )
 
 // BasePacks are required for every included employee: contributions,

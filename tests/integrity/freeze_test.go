@@ -3,9 +3,9 @@ package integrity
 import (
 	"testing"
 
-	"github.com/PithomLabs/a1/internal/hr"
-	"github.com/PithomLabs/a1/internal/payroll"
-	"github.com/PithomLabs/a1/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/hr"
+	"github.com/PithomLabs/a2/internal/payroll"
+	"github.com/PithomLabs/a2/internal/timesheet"
 )
 
 // G2: temporal freezing. Drafts stay mutable; decided, published and

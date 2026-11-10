@@ -8,9 +8,9 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/PithomLabs/a1/internal/apperr"
-	"github.com/PithomLabs/a1/internal/timesheet"
-	"github.com/PithomLabs/a1/internal/wfm"
+	"github.com/PithomLabs/a2/internal/apperr"
+	"github.com/PithomLabs/a2/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/wfm"
 )
 
 // Stage B group-atomic re-correction (§5): a multi-segment group

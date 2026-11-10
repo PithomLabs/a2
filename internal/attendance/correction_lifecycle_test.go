@@ -3,8 +3,8 @@ package attendance
 import (
 	"testing"
 
-	"github.com/PithomLabs/a1/internal/payroll"
-	"github.com/PithomLabs/a1/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/payroll"
+	"github.com/PithomLabs/a2/internal/timesheet"
 )
 
 // A4 two-segment same-sheet lifecycle (§5): a cross-midnight

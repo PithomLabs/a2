@@ -8,8 +8,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	coredatabase "github.com/PithomLabs/a1/core/database"
-	coremigrations "github.com/PithomLabs/a1/migrations/core"
+	coredatabase "github.com/PithomLabs/a2/core/database"
+	coremigrations "github.com/PithomLabs/a2/migrations/core"
 )
 
 func migrateCmd() *cobra.Command {

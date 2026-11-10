@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/PithomLabs/a1/internal/payroll"
-	"github.com/PithomLabs/a1/internal/timesheet"
-	"github.com/PithomLabs/a1/tests/dbutil"
+	"github.com/PithomLabs/a2/internal/payroll"
+	"github.com/PithomLabs/a2/internal/timesheet"
+	"github.com/PithomLabs/a2/tests/dbutil"
 )
 
 // Stage D readiness flow (§7): after approval, a directly inserted

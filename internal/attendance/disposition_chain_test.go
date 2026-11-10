@@ -3,7 +3,7 @@ package attendance
 import (
 	"testing"
 
-	"github.com/PithomLabs/a1/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/timesheet"
 )
 
 // Stage C service parity: a canonical event cannot itself be

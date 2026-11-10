@@ -6,10 +6,10 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/PithomLabs/a1/internal/hr"
-	"github.com/PithomLabs/a1/internal/payroll"
-	"github.com/PithomLabs/a1/internal/timesheet"
-	"github.com/PithomLabs/a1/internal/wfm"
+	"github.com/PithomLabs/a2/internal/hr"
+	"github.com/PithomLabs/a2/internal/payroll"
+	"github.com/PithomLabs/a2/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/wfm"
 )
 
 // lateChain is a DAY roster with two scheduled breaks — lunch 12:00 and
