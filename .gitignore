@@ -6,6 +6,8 @@ build/
 .env.*.local
 *.log
 
+.github
+
 # Go caches if ever pointed at the workspace.
 .gocache/
 .gomodcache/
