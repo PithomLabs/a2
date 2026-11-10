@@ -14,6 +14,16 @@ build/
 .gocache/
 .gomodcache/
 
+# POC immudb file-cache state (writer/auditor dirs; never committed).
+.poc-writer-state/
+.poc-audit-state/
+
+# Local agent/tool state (never committed).
+.eden/
+.hg/
+.muse/
+.sl/
+
 # Editor and OS noise.
 .DS_Store
 Thumbs.db
