@@ -15,12 +15,12 @@ import (
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	coredatabase "github.com/PithomLabs/a1/core/database"
-	"github.com/PithomLabs/a1/internal/apperr"
-	"github.com/PithomLabs/a1/internal/audit"
-	"github.com/PithomLabs/a1/internal/compbasis"
-	"github.com/PithomLabs/a1/internal/employer"
-	"github.com/PithomLabs/a1/internal/timesheet"
+	coredatabase "github.com/PithomLabs/a2/core/database"
+	"github.com/PithomLabs/a2/internal/apperr"
+	"github.com/PithomLabs/a2/internal/audit"
+	"github.com/PithomLabs/a2/internal/compbasis"
+	"github.com/PithomLabs/a2/internal/employer"
+	"github.com/PithomLabs/a2/internal/timesheet"
 )
 
 // SnapshotSchemaVersion pins the canonical snapshot document shape.

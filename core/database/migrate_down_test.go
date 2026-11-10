@@ -9,8 +9,8 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	coremigrations "github.com/PithomLabs/a1/migrations/core"
-	"github.com/PithomLabs/a1/tests/dbutil"
+	coremigrations "github.com/PithomLabs/a2/migrations/core"
+	"github.com/PithomLabs/a2/tests/dbutil"
 )
 
 // Stage F: 00011 Down is guarded forward-only. It refuses populated

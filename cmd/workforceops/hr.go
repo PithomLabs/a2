@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/PithomLabs/a1/internal/employer"
-	"github.com/PithomLabs/a1/internal/hr"
+	"github.com/PithomLabs/a2/internal/employer"
+	"github.com/PithomLabs/a2/internal/hr"
 )
 
 func employerCmd() *cobra.Command {

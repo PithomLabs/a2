@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/PithomLabs/a1/tests/dbutil"
+	"github.com/PithomLabs/a2/tests/dbutil"
 )
 
 // D2 at the CLI boundary: normal commands refuse privileged runtime

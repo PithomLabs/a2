@@ -8,10 +8,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/PithomLabs/a1/internal/hr"
-	"github.com/PithomLabs/a1/internal/payroll"
-	"github.com/PithomLabs/a1/internal/seed"
-	"github.com/PithomLabs/a1/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/hr"
+	"github.com/PithomLabs/a2/internal/payroll"
+	"github.com/PithomLabs/a2/internal/seed"
+	"github.com/PithomLabs/a2/internal/timesheet"
 )
 
 // TestM2Workflow runs the fifteen §10F steps on the seeded MERIDIAN

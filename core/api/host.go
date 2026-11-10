@@ -11,9 +11,9 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/labstack/echo/v4"
 
-	"github.com/PithomLabs/a1/core/config"
-	"github.com/PithomLabs/a1/core/database"
-	"github.com/PithomLabs/a1/core/observability"
+	"github.com/PithomLabs/a2/core/config"
+	"github.com/PithomLabs/a2/core/database"
+	"github.com/PithomLabs/a2/core/observability"
 )
 
 // ServiceSpec describes one API host process.

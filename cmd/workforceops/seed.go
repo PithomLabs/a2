@@ -7,7 +7,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/PithomLabs/a1/internal/seed"
+	"github.com/PithomLabs/a2/internal/seed"
 )
 
 func seedCmd() *cobra.Command {

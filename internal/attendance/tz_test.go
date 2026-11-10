@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/PithomLabs/a1/internal/hr"
-	"github.com/PithomLabs/a1/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/hr"
+	"github.com/PithomLabs/a2/internal/timesheet"
 )
 
 // TestEmploymentTimezoneAttribution pins Singapore break classification

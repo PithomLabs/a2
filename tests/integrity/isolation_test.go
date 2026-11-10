@@ -3,7 +3,7 @@ package integrity
 import (
 	"testing"
 
-	"github.com/PithomLabs/a1/internal/payroll"
+	"github.com/PithomLabs/a2/internal/payroll"
 )
 
 // G1: two-employer isolation. Every test builds two employers and proves

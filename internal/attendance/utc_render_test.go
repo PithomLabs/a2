@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/PithomLabs/a1/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/timesheet"
 )
 
 // H2 (C-TZ-01/02): audit and diagnostic instants render in UTC so the

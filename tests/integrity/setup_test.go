@@ -13,9 +13,9 @@ import (
 	"testing"
 	"time"
 
-	coredatabase "github.com/PithomLabs/a1/core/database"
-	coremigrations "github.com/PithomLabs/a1/migrations/core"
-	"github.com/PithomLabs/a1/tests/dbutil"
+	coredatabase "github.com/PithomLabs/a2/core/database"
+	coremigrations "github.com/PithomLabs/a2/migrations/core"
+	"github.com/PithomLabs/a2/tests/dbutil"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 

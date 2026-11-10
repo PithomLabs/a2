@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	coremigrations "github.com/PithomLabs/a1/migrations/core"
-	"github.com/PithomLabs/a1/tests/dbutil"
+	coremigrations "github.com/PithomLabs/a2/migrations/core"
+	"github.com/PithomLabs/a2/tests/dbutil"
 )
 
 func TestMigrateUpAndStatus(t *testing.T) {

@@ -10,10 +10,10 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	coredatabase "github.com/PithomLabs/a1/core/database"
-	"github.com/PithomLabs/a1/internal/apperr"
-	"github.com/PithomLabs/a1/internal/audit"
-	"github.com/PithomLabs/a1/internal/employer"
+	coredatabase "github.com/PithomLabs/a2/core/database"
+	"github.com/PithomLabs/a2/internal/apperr"
+	"github.com/PithomLabs/a2/internal/audit"
+	"github.com/PithomLabs/a2/internal/employer"
 )
 
 // RegenerateFunc rebuilds a draft sheet's lines inside the caller's

@@ -5,7 +5,7 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/PithomLabs/a1/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/timesheet"
 )
 
 func recordMicros(t *testing.T, pool *pgxpool.Pool, emp, date string) (actualUs, paidUs int64, actualMin, paidMin float64) {

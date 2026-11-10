@@ -19,8 +19,8 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
 
-	coremigrations "github.com/PithomLabs/a1/migrations/core"
-	"github.com/PithomLabs/a1/tests/dbutil"
+	coremigrations "github.com/PithomLabs/a2/migrations/core"
+	"github.com/PithomLabs/a2/tests/dbutil"
 )
 
 // gate2ExpSQL is the isolated Option B fixture: input tables (open and
@@ -447,10 +447,12 @@ var (
 // Tests use random employers, so no cross-test interference.
 func gate2bSetup(t *testing.T) dbutil.TestDB {
 	t.Helper()
+	// Hoisted above Once: t.Skip inside Do would poison the cache (Goexit
+	// marks Once done, leaving a zero TestDB for every later test).
+	dsn := dbutil.DSN(t)
 	gate2bOnce.Do(func() {
 		ctx, cancel := testCtx()
 		defer cancel()
-		dsn := dbutil.DSN(t)
 		name := dbName(t, dsn) + "_gate2b"
 		assertDisposableDrop(dsn, name)
 		maint, err := pgx.Connect(ctx, dsn)

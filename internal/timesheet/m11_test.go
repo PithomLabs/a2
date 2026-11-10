@@ -5,8 +5,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/PithomLabs/a1/internal/apperr"
-	"github.com/PithomLabs/a1/internal/attendance"
+	"github.com/PithomLabs/a2/internal/apperr"
+	"github.com/PithomLabs/a2/internal/attendance"
 )
 
 // TestRejectedRecoveryFlow is the §5B correction lifecycle:

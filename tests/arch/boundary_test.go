@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-const modulePath = "github.com/PithomLabs/a1"
+const modulePath = "github.com/PithomLabs/a2"
 
 // TestCoreDoesNotImportModules enforces the kernel dependency rule with the
 // real Go dependency graph: nothing under core/ may depend on modules/ or

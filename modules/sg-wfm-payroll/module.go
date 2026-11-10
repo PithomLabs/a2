@@ -7,7 +7,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 
-	"github.com/PithomLabs/a1/core/module"
+	"github.com/PithomLabs/a2/core/module"
 )
 
 // Module implements module.Module for the reference domain.

@@ -9,9 +9,9 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/PithomLabs/a1/internal/hr"
-	"github.com/PithomLabs/a1/internal/timesheet"
-	"github.com/PithomLabs/a1/tests/dbutil"
+	"github.com/PithomLabs/a2/internal/hr"
+	"github.com/PithomLabs/a2/internal/timesheet"
+	"github.com/PithomLabs/a2/tests/dbutil"
 )
 
 // snapRace holds one capture-vs-writer orchestration: the capture runs

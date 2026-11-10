@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	coredatabase "github.com/PithomLabs/a1/core/database"
-	"github.com/PithomLabs/a1/internal/timesheet"
-	"github.com/PithomLabs/a1/tests/dbutil"
+	coredatabase "github.com/PithomLabs/a2/core/database"
+	"github.com/PithomLabs/a2/internal/timesheet"
+	"github.com/PithomLabs/a2/tests/dbutil"
 )
 
 // TestDemoResetRecycles exercises the controlled administrative reset:

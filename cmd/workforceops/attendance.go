@@ -5,8 +5,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/PithomLabs/a1/internal/attendance"
-	"github.com/PithomLabs/a1/internal/timesheet"
+	"github.com/PithomLabs/a2/internal/attendance"
+	"github.com/PithomLabs/a2/internal/timesheet"
 )
 
 func attendanceCmd() *cobra.Command {

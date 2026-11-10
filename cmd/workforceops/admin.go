@@ -8,9 +8,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	coredatabase "github.com/PithomLabs/a1/core/database"
-	"github.com/PithomLabs/a1/internal/employer"
-	"github.com/PithomLabs/a1/internal/rules"
+	coredatabase "github.com/PithomLabs/a2/core/database"
+	"github.com/PithomLabs/a2/internal/employer"
+	"github.com/PithomLabs/a2/internal/rules"
 )
 
 // Elevated-privilege operations, kept separate from schema migration.

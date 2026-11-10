@@ -7,7 +7,7 @@ import (
 
 	"github.com/jackc/pgx/v5"
 
-	"github.com/PithomLabs/a1/tests/dbutil"
+	"github.com/PithomLabs/a2/tests/dbutil"
 )
 
 // S7-P2-FRESHFLAKE residual: roles are cluster-global while test

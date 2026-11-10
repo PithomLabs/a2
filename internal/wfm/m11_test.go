@@ -6,8 +6,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/PithomLabs/a1/internal/apperr"
-	"github.com/PithomLabs/a1/internal/hr"
+	"github.com/PithomLabs/a2/internal/apperr"
+	"github.com/PithomLabs/a2/internal/hr"
 )
 
 func TestPublishGate(t *testing.T) {
